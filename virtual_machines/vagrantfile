@@ -1,0 +1,35 @@
+Vagrant.require_version ">= 2.2.0"
+
+#this is our config file. in order for this to work for another developer, they need to at least have this minimum version of vagrant
+
+Vagrant.configure("2") do |c|
+   c.vm.define "master" do |m|
+      m.vm.box = "generic/ubuntu1804"
+      m.vm.box_version = "1.9.36"
+      #going to configure a development environment that we'll call master that is based on the generic ubuntu version and specifically 1.9.36
+      m.vm.hostname = "master"
+
+      #can have all the different providers in this config file because your machine will pick the one that works for it better
+      #we just include them all because this is supposed to be a universal file that would potentially be run on different machines
+      ##HYPERV SETUP
+      m.vm.provider "hyperv" do |h|  #where is this development going to run? in my case it'll be virtual box
+         h.memory = 2048
+         h.linked_clone = true
+         h.enable_virtualization_extensions = true
+         h.vmname = "master_#{Time.now.to_i}"
+      end
+      
+      #each provider has their own config titles. in virtual box its just name in hyper v its vmname
+      m.vm.provider "virtualbox" do |v|
+         v.gui = false
+         v.memory = 2048
+         v.name = "master_#{Time.now.to_i}"
+      end
+
+      #this allows the network to only be accessed from my machine and not any other machine. dhcp is the dynamic host configuration protoccol
+      #the machine we are creating is in our current machine but separate so the dhcp provides it an ip so it can connect to the internet
+      #m.vm.network "private_network", type: "dhcp"
+
+      m.vm.provision "shell", path: "machine.sh"
+   end
+end
