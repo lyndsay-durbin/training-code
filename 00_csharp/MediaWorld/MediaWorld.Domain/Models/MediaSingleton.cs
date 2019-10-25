@@ -1,3 +1,5 @@
+using System;
+
 namespace   MediaWorld.Domain.Models
 {
    /// <summary>
@@ -20,6 +22,11 @@ namespace   MediaWorld.Domain.Models
       public static MediaSingleton GetInstance()
       {
          return _instance;
+      }
+
+      public void Play(Music m)
+      {
+         Console.WriteLine(m);
       }
    }
 }

@@ -8,12 +8,16 @@ namespace MediaWorld.Domain.Models
       public string Title { get; set; }
       public string Genre { get; set; }
       public TimeSpan Duration { get; set; }
+      public string BookSpeaker {get; set;}
 
       public Music(){
          Artist = "kanye west";
          Title = "diamonds are forever";
          Genre = "R&B";
          Duration = new TimeSpan(0,5,0);
+         BookSpeaker = "Jim Dale";
       }
+
+      
    }
 }
