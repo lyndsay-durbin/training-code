@@ -1,20 +1,23 @@
 namespace   MediaWorld.Domain.Models
 {
+   /// <summary>
+   /// contains the singleton design pattern
+   /// </summary>
    public class MediaSingleton
    {
 
-      private static readonly string _instance = "mediaplayer";
+      private static readonly MediaSingleton _instance = new MediaSingleton();
 
       /// <summary>
-      /// this is a singleton, i want something that everyone can acces only once. this is a constructor
+      /// contains the constructor
       /// </summary>
       private MediaSingleton(){}
 
       /// <summary>
-      /// this returns an instance of Mediaplayer
+      /// returns an instance of MediaSingleton
       /// </summary>
       /// <returns></returns>
-      public static string GetInstance()
+      public static MediaSingleton GetInstance()
       {
          return _instance;
       }
