@@ -1,4 +1,7 @@
 ﻿using System;
+using MediaWorld.Domain.Abstracts;
+using MediaWorld.Domain.Interfaces;
+using MediaWorld.Domain.Singleton;
 using MediaWorld.Domain.Models;
 
 namespace MediaWorld.Client
@@ -18,12 +21,12 @@ namespace MediaWorld.Client
 
         private static void Play()
         {
-            var mediaPlayer = MediaSingleton.GetInstance();          
-            Music s = new Song();
-            Music a = new Audible();
+            var mediaPlayer = MediaSingleton.Instance;          
+            AMedia song = new Song();
+            AMedia movie = new Movie();
 
-            mediaPlayer.Play(s);
-            mediaPlayer.Play(a); 
+            mediaPlayer.Execute("play", song);
+            mediaPlayer.Execute("play", movie); 
         }
     }
 }

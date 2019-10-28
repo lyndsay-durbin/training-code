@@ -1,6 +1,8 @@
 using System;
+using MediaWorld.Domain.Abstracts;
+using MediaWorld.Domain.Interfaces;
 
-namespace   MediaWorld.Domain.Models
+namespace   MediaWorld.Domain.Singleton
 {
    /// <summary>
    /// contains the singleton design pattern
@@ -19,14 +21,18 @@ namespace   MediaWorld.Domain.Models
       /// returns an instance of MediaSingleton
       /// </summary>
       /// <returns></returns>
-      public static MediaSingleton GetInstance()
+      // this was a method and now it is a property
+      public static MediaSingleton Instance
       {
-         return _instance;
+         get
+         {
+            return _instance;
+         }
       }
 
-      public void Play(Music m)
+      public void Execute(string command, AMedia media)
       {
-         Console.WriteLine(m);
+         Console.WriteLine(media);
       }
    }
 }
