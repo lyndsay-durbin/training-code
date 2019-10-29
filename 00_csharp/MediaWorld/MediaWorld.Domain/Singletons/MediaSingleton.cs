@@ -7,7 +7,7 @@ namespace   MediaWorld.Domain.Singleton
    /// <summary>
    /// contains the singleton design pattern
    /// </summary>
-   public class MediaSingleton
+   public class MediaSingleton : IPlayer
    {
 
       private static readonly MediaSingleton _instance = new MediaSingleton();
