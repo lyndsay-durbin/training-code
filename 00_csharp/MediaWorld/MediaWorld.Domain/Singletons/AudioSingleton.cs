@@ -7,7 +7,7 @@ namespace   MediaWorld.Domain.Singleton
    /// <summary>
    /// contains the singleton design pattern
    /// </summary>
-   public class AudioSingleton
+   public class AudioSingleton : IPlayer
    {
 
       private static readonly AudioSingleton _instance = new AudioSingleton();
@@ -33,6 +33,31 @@ namespace   MediaWorld.Domain.Singleton
       public void Execute(string command, AMedia media)
       {
          Console.WriteLine(media);
+      }
+
+      public bool PowerDown()
+      {
+         throw new NotImplementedException();
+      }
+
+      public bool Powerup()
+      {
+         throw new NotImplementedException();
+      }
+
+      public bool VolumeDown()
+      {
+         throw new NotImplementedException();
+      }
+
+      public bool VolumeMute()
+      {
+         throw new NotImplementedException();
+      }
+
+      public bool VolumeUp()
+      {
+         throw new NotImplementedException();
       }
    }
 }

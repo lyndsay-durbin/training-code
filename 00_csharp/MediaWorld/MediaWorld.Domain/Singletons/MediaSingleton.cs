@@ -34,5 +34,30 @@ namespace   MediaWorld.Domain.Singleton
       {
          Console.WriteLine(media);
       }
+
+      public bool PowerDown()
+      {
+         throw new NotImplementedException();
+      }
+
+      public bool Powerup()
+      {
+         throw new NotImplementedException();
+      }
+
+      public bool VolumeDown()
+      {
+         return true;
+      }
+
+      public bool VolumeMute()
+      {
+         return true;
+      }
+
+      public bool VolumeUp()
+      {
+         return true;
+      }
    }
 }
