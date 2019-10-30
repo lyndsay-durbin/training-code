@@ -24,7 +24,7 @@ namespace MediaWorld.Domain.Abstracts
 
       public override string ToString()
       {
-         return $"{this.Title}";
+         return $"{this}";
       }
 
       public abstract bool Rewind();
