@@ -1,17 +1,25 @@
+using System;
 using MediaWorld.Domain.Abstracts;
 
 namespace MediaWorld.Domain.Models
 {
-   public class Photo : AMedia
+   public class Photo : AVideo
    {
-      public override bool Forward()
+      public Photo()
       {
-         throw new System.NotImplementedException();
+         Initialize();
       }
 
-      public override bool Rewind()
+      public Photo(string Title, TimeSpan duration, int framerate)
       {
-         throw new System.NotImplementedException();
+         Initialize(Title, duration, framerate);
+      }
+
+      private void Initialize(string title="Untitled", TimeSpan duration=new TimeSpan(), int framerate=0)
+      {
+         Title = title;
+         Duration = duration;
+         FrameRate = framerate;
       }
    }
 }

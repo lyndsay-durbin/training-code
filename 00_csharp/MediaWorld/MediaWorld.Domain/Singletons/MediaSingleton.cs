@@ -1,6 +1,7 @@
 using System;
 using MediaWorld.Domain.Abstracts;
 using MediaWorld.Domain.Interfaces;
+using static MediaWorld.Domain.Delegates.ControlDelegate;
 
 namespace   MediaWorld.Domain.Singleton
 {
@@ -11,6 +12,8 @@ namespace   MediaWorld.Domain.Singleton
    {
 
       private static readonly MediaSingleton _instance = new MediaSingleton();
+
+
 
       /// <summary>
       /// contains the constructor
@@ -30,9 +33,10 @@ namespace   MediaWorld.Domain.Singleton
          }
       }
 
-      public void Execute(string command, AMedia media)
+      public void Execute(ButtonDelegate button)
       {
-         Console.WriteLine(media);
+         button();
+         button();
       }
 
       public bool PowerDown()

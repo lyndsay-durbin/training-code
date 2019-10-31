@@ -7,6 +7,10 @@ namespace MediaWorld.Domain.Abstracts
    public abstract class AMedia : IControl
    {
 
+      public string Title {get; set;}
+      public TimeSpan Duration { get; set; }
+      public abstract bool Forward();
+
       public virtual bool Pause()
       {
          throw new System.NotImplementedException();
@@ -29,11 +33,6 @@ namespace MediaWorld.Domain.Abstracts
 
       public abstract bool Rewind();
 
-      public abstract bool Forward();
-
-      public TimeSpan Duration { get; set; }
-
-      public string Title {get; set;}
 
    }
 

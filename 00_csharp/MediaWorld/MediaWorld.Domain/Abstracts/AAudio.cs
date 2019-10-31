@@ -7,6 +7,10 @@ namespace MediaWorld.Domain.Abstracts
 
       public int BitRate { get; set; }
 
+      public override bool Play()
+      {
+         return false;
+      }
       public override bool Forward()
       {
          return true;

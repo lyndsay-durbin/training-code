@@ -1,18 +1,26 @@
+using System;
 using MediaWorld.Domain.Abstracts;
 
 namespace MediaWorld.Domain.Models
 {
    public class Book : AAudio
    {
-      public override bool Forward()
+
+      public Book()
       {
-         throw new System.NotImplementedException();
+         Initialize();
       }
 
-      public override bool Rewind()
+      public Book(string title, TimeSpan duration, int bitrate)
       {
-         throw new System.NotImplementedException();
+         Initialize(title, duration, bitrate);
+      }
+
+      private void Initialize(string title="Untitled", TimeSpan duration=new TimeSpan(), int bitrate=256)
+      {
+         Title = title;
+         Duration = duration;
+         BitRate = bitrate;
       }
    }
-
 }
