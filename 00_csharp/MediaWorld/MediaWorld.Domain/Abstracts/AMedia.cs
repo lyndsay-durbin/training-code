@@ -30,7 +30,7 @@ namespace MediaWorld.Domain.Abstracts
 
          while(count<10)
          {
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             ResultEvent(this);
             count++;
          }

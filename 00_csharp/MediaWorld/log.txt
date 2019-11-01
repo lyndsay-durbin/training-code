@@ -1,0 +1,40 @@
+2019-11-01 12:15:46.623 -05:00 [INF] Play Method
+2019-11-01 12:15:46.671 -05:00 [DBG] Untitled 00:00:00
+BitRate: 256
+2019-11-01 12:15:46.672 -05:00 [DBG] Untitled 00:00:00
+BitRate: 256
+2019-11-01 12:15:46.672 -05:00 [DBG] Untitled 00:00:00
+FrameRate: 24
+2019-11-01 12:16:06.680 -05:00 [DBG] Untitled 00:00:00
+FrameRate: 0
+2019-11-01 12:16:26.690 -05:00 [WRN] end of Main method
+2019-11-01 12:17:57.151 -05:00 [INF] Play Method
+2019-11-01 12:17:57.202 -05:00 [DBG] {"BitRate":256,"Title":"Untitled","Duration":"00:00:00","$type":"Book"}
+2019-11-01 12:17:57.209 -05:00 [DBG] {"BitRate":256,"Title":"Untitled","Duration":"00:00:00","$type":"Song"}
+2019-11-01 12:17:57.210 -05:00 [DBG] {"FrameRate":24,"Title":"Untitled","Duration":"00:00:00","$type":"Movie"}
+2019-11-01 12:18:17.220 -05:00 [DBG] {"FrameRate":0,"Title":"Untitled","Duration":"00:00:00","$type":"Photo"}
+2019-11-01 12:18:37.230 -05:00 [WRN] end of Main method
+2019-11-01 12:22:36.165 -05:00 [INF] Play Method
+2019-11-01 12:22:36.209 -05:00 [DBG] {@item, item.Title}
+2019-11-01 12:22:36.209 -05:00 [DBG] {@item, item.Title}
+2019-11-01 12:22:36.209 -05:00 [DBG] {@item, item.Title}
+2019-11-01 12:22:36.210 -05:00 [DBG] {@item, item.Title}
+2019-11-01 12:22:36.210 -05:00 [WRN] end of Main method
+2019-11-01 12:22:54.776 -05:00 [INF] Play Method
+2019-11-01 12:22:54.819 -05:00 [DBG] Untitled
+2019-11-01 12:22:54.820 -05:00 [DBG] Untitled
+2019-11-01 12:22:54.820 -05:00 [DBG] Untitled
+2019-11-01 12:22:54.820 -05:00 [DBG] Untitled
+2019-11-01 12:22:54.821 -05:00 [WRN] end of Main method
+2019-11-01 14:05:55.158 -05:00 [INF] Play Method
+2019-11-01 14:05:55.203 -05:00 [DBG] Untitled
+2019-11-01 14:05:55.204 -05:00 [DBG] Untitled
+2019-11-01 14:05:55.204 -05:00 [DBG] Untitled
+2019-11-01 14:05:55.204 -05:00 [DBG] Untitled
+2019-11-01 14:05:55.205 -05:00 [WRN] end of Main method
+2019-11-01 14:06:13.448 -05:00 [INF] Play Method
+2019-11-01 14:06:13.489 -05:00 [DBG] Untitled
+2019-11-01 14:06:13.490 -05:00 [DBG] Untitled
+2019-11-01 14:06:13.490 -05:00 [DBG] Untitled
+2019-11-01 14:06:13.491 -05:00 [DBG] Untitled
+2019-11-01 14:06:13.491 -05:00 [WRN] end of Main method
