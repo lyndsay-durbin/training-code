@@ -33,12 +33,16 @@ namespace   MediaWorld.Domain.Singleton
          }
       }
 
-      public void Execute(ButtonDelegate button)
+      public void Execute(ButtonDelegate button, AMedia media)
       {
-         button();
+         media.ResultEvent += ResultHandler;
          button();
       }
 
+      public void ResultHandler(AMedia media)
+      {
+         System.Console.WriteLine("{0} is playing...", media.Title);
+      }
       public bool PowerDown()
       {
          throw new NotImplementedException();
