@@ -28,8 +28,9 @@ namespace MediaWorld.Client
             program.ApplicationStart();
             //ApplicationStart();
             //Play();
-
-            MagicTask();
+            //MagicThread();
+            //MagicTask();
+            MagicAsync().GetAwaiter().GetResult();
             Log.Warning("end of Main method");
         }
 
@@ -102,6 +103,11 @@ namespace MediaWorld.Client
 
             t1.Start();
             t2.Start();
+        }
+
+        private static async Task MagicAsync ()
+        {
+           await Task.Run(() => {Run("C"); });
         }
     }
 }
