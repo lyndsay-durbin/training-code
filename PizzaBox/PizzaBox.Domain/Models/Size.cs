@@ -1,4 +1,5 @@
 using PizzaBox.Domain.Interfaces;
+using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Domain.Models
 {
@@ -9,8 +10,8 @@ namespace PizzaBox.Domain.Models
       string Medium = "Medium";
       string Small = "Small";
 
-      string PizzaSize;
-
+      public string PizzaSize { get; set; }
+      public double PizzaPrice { get; set; }
       public Size()
       {
          PizzaSize = Medium;
@@ -24,6 +25,20 @@ namespace PizzaBox.Domain.Models
          else if (string.Equals(type, Large))
             PizzaSize = Large;
          else PizzaSize = Medium;
+      }
+
+      public void PizzaPricing()
+      {
+         if (PizzaSize==Small)
+            PizzaPrice = 6.00;
+         else if (PizzaSize ==Medium)
+            PizzaPrice = 7.50;
+         else if(PizzaSize == Large)
+            PizzaPrice = 9.00;
+
+         int num = PizzaType.NumToppings.get;
+
+         PizzaPrice = PizzaPrice + (double)num;
       }
    }
 }

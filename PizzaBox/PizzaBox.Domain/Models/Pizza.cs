@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using PizzaBox.Domain.Models;
 
 namespace PizzaBox.Domain.Models
 {
@@ -16,11 +17,11 @@ namespace PizzaBox.Domain.Models
       "extra cheese"};
       List<string> CurrentToppings = new List<string>();
 
-      string Crust;
+      int PizzaCount = 0;
 
       public Pizza(string crust)
       {
-         Crust = crust;
+         Crust(crust);
       }
 
       /// <summary>
@@ -45,6 +46,49 @@ namespace PizzaBox.Domain.Models
          }
       }
 
+      public void NumPizzas()
+      {
+         PizzaCount++;
+         //return PizzaCount;
+      }
 
    }
+
+
+   /*
+   public Pizza(){
+      Toppings = new List<ETopping>();
+      SetPrice();
+   }
+
+   private void SetPrice(){
+      switch (Size)
+      {
+         case ESize.Large:
+            Price = 12.99M;
+            break;
+         case ESize.Medium:
+            Price = 9.99M;
+            break;
+         case ESize.Small:
+            Price = 6.99M;
+            break;
+         default:
+            Price = 16.99M;
+            break;
+      }
+   }
+
+   public decimal Price{get;set}
+   public ECrust Crust {get;set;}
+   public ESauce Sauce {get;set;}
+   public ESize Size {get;set;}
+   public ECheese Cheese {get;set;}
+   public List<ETopping> Toppings {get;set;}
+
+
+   
+   
+   
+    */
 }

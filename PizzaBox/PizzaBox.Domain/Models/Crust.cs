@@ -7,11 +7,10 @@ namespace PizzaBox.Domain.Models
       string Thin = "thin";
       string Thick = "thick";
       string Deep = "deep dish";
-      string CrustType;
+      public string CrustType { get; set; }
       public Crust()
       {
          CrustType = Thick;
-         //return Thick;
       }
 
       public Crust(string type)

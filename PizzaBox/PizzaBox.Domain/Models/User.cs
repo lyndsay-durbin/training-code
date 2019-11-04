@@ -58,7 +58,20 @@ namespace PizzaBox.Domain.Models
          //prints out the prebuilt pizzas ordered, and the prices of each for the current order
       }
 
-      
+
 
    }
+
+   /* this is an abstract
+   public strinf Address {get;set;}
+
+   public List<Order> Orders{get;set;}
+   public AUser()
+   {
+      Orders = new List<Order>();
+   }
+   
+   
+   
+    */
 }
