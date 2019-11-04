@@ -2,30 +2,28 @@ using PizzaBox.Domain.Interfaces;
 
 namespace PizzaBox.Domain.Models
 {
-   public abstract class Size : IPizza
+   public abstract class Size
    {
 
       string Large = "Large";
       string Medium = "Medium";
       string Small = "Small";
 
-      public string Size()
+      string PizzaSize;
+
+      public Size()
       {
-         return Medium;
+         PizzaSize = Medium;
       }
 
-      public string Size(string type)
+      public Size(string type)
       {
-         string PSize;
-
          //parses through to cheeck if the type of crust matches a correct input
          if (string.Equals(type, Small))
-            PSize = Small;
+            PizzaSize = Small;
          else if (string.Equals(type, Large))
-            PSize = Large;
-         else PSize = Medium;
-
-         return PSize;
+            PizzaSize = Large;
+         else PizzaSize = Medium;
       }
    }
 }

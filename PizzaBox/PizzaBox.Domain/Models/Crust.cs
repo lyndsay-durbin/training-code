@@ -6,25 +6,26 @@ namespace PizzaBox.Domain.Models
    {
       string Thin = "thin";
       string Thick = "thick";
-      string Deep = "Deep Dish";
-      public string Crust()
+      string Deep = "deep dish";
+      string CrustType;
+      public Crust()
       {
-         //string CrustType = Large;
-         return Thick;
+         CrustType = Thick;
+         //return Thick;
       }
 
-      public string Crust(string type)
+      public Crust(string type)
       {
-         string CrustType;
+         string temp;
 
          //parses through to check if the type of crust matches a correct input
          if (string.Equals(type, Thin))
-            CrustType = Thin;
+            temp = Thin;
          else if (string.Equals(type, Deep))
-            CrustType = Deep;
-         else CrustType = Thick;
+            temp = Deep;
+         else temp = Thick;
 
-         return CrustType;
+         CrustType = temp;
       }
    }
 }

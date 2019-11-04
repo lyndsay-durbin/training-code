@@ -5,7 +5,7 @@ namespace PizzaBox.Domain.Interfaces
    public interface IPizza
    {
       Crust PizzaCrust();
-      Size PizzaSize();
+      string PizzaSize(string size);
       Pizza PizzaType();
    }
 }

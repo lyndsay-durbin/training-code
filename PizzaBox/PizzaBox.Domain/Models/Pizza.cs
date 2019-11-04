@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace PizzaBox.Domain.Models
 {
    public class Pizza
@@ -7,42 +10,23 @@ namespace PizzaBox.Domain.Models
       //should compute the cost
       //can have 2 default toppings (crust and chesse)
       //can limit toppings to 5
-      List<string> toppings = new List<string>();
-      //sauce, cheese, pepperoni, sausage, bacon, olives, pepper, onion, extra cheese
+      List<string> toppings = new List<string>() 
+      {"sauce", "cheese", "pepperoni", "sausage", 
+      "bacon", "olives", "pepper", "onion", 
+      "extra cheese"};
       List<string> CurrentToppings = new List<string>();
 
       string Crust;
-      bool Sauce = true;
-      bool Cheese = true;
-
-      public void MeatP()
-      {
-         Pizza p = new Pizza("thick", "sauce", "cheese");
-         AddTopping("Pepperoni");
-         AddTopping("Sausage");
-         AddTopping("Bacon");
-      }
-
-      public void VeggieP()
-      {
-         Pizza p = new Pizza("thick", "sauce", "cheese");
-         AddTopping("Pepper");
-         AddTopping("Onion");
-         AddTopping("Olives");
-      }
-
-      public void CheeseP()
-      {
-         Pizza p = new Pizza("thick", "sauce", "cheese");
-         AddTopping("extracheese");
-      }
-
 
       public Pizza(string crust)
       {
          Crust = crust;
       }
 
+      /// <summary>
+      /// adds a topping to the pizza's current toppings and prints a list of these
+      /// </summary>
+      /// <param name="topping"></param>
       public void AddTopping(string topping)
       {
          foreach(string item in toppings)

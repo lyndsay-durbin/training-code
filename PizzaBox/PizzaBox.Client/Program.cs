@@ -1,4 +1,6 @@
 ﻿using System;
+using PizzaBox.Domain.Models;
+
 
 namespace PizzaBox.Client
 {
@@ -6,7 +8,13 @@ namespace PizzaBox.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Please enter your email: \n");
+            string username = Console.ReadLine();
+
+            if (List<string>.Contains(username))
+            {
+               //begin an order
+            }
         }
     }
 }

@@ -1,0 +1,9 @@
+when first opened, the program will request a username
+will read in the username and check if it matches the list of pre created usernames
+once in, user will be prompted to choose a pizza
+   will add a pizza, be prompted for crust type, will respond, be prompted for size, will respond
+   after each successful add asking if there is more, y/n
+   once n, user is shown list of locations and prompted for choice
+   after input, the order is sent to that "location"
+user can view the order that was placed
+
