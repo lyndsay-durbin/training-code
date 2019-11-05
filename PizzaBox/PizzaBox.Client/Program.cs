@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using PizzaBox.Domain.Models;
-
+using PizzaBox.Domain.Abstracts;
+using PizzaBox.Domain.Enums;
 
 namespace PizzaBox.Client
 {
@@ -8,47 +10,35 @@ namespace PizzaBox.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Please enter your email: \n");
+            List<string> usernames = new List<string>();
+            usernames.Add("lyndsaydurbin@yahoo.com");
+            //Users customer = new Users();
+            Order p;
+            Store s;
+            
+
+            Console.WriteLine("Please enter your email: ");
             string username = Console.ReadLine();
 
-            if (List<string>.Contains(username))
+            if (usernames.Contains(username))
             {
                //begin an order
+               //customer.signedin = true;
+               Console.WriteLine("Welcome! Would you like to create an order? y/n");
+               string response  = Console.ReadLine();
+               if (response == "y"){
+                  p = new Order();
+                  //s.Orders().Add(p);
+               }
+               //else {Console.WriteLine("Thank you! Come Again!");}
+               
+               //Store sending = new Store();
+               Console.WriteLine("Your order has been received! Which store would you like to send it to?");
+               Console.WriteLine();
+               string answer = Console.ReadLine();
+
             }
+            else System.Console.WriteLine("error");
         }
-    }
-
-    /*
-    within maiin
-    PointOfSale();
-
-    outside main:
-    private static void PointOfSale()
-    {
-       var customer = new Customer();
-       var order = new Order();
-       var store = new Store();
-
-       MakeSale(customer, order, store);
-    }
-
-    private static void MakeSale(AUser user, Order o, Store s)
-    {
-       var pizzas = SelectPizzas();
-       o.Pizzas.AddRange(pizzas);
-       u.Orders.Add(o);
-       s.Orders.Add(o);
-    }
-
-    private static List<Pizza> SelectPizzas()
-    {
-       this is where the readlines/writelines will occur to figure out which pizzas would be added and how many pizzas are wanted by the user
-       
-       return new list<Pizzas>(){
-          new Pizza(),
-          new Pizza()
-       };
-    }
-    
-     */
+      }
 }

@@ -1,11 +1,13 @@
+using System.Collections.Generic;
+using System;
+using PizzaBox.Domain.Abstracts;
+
 namespace PizzaBox.Domain.Models
 {
-   public class Users
+   public class Users :AUser
    {
-      //should view order history
       //should order from 1 location/24 hours
       //should only order is account exists
-      //should be able to sign in
       //should be able to see a list of locations
       //should be able to select a location
       //should be able to make an order
@@ -21,10 +23,34 @@ namespace PizzaBox.Domain.Models
       //could only order 1 time per 2 hours
 
       //remains true when signed in, false when user is not signed in
-      public bool signedin = false;
+      public bool signedin { get{
+         return signedin;
+      } set{
+         signedin=true;
+      }}
+      public string UN = "lyndsaydurbin";
+      public List<Pizza> CurrentOrders { get; set; }
+      public List<Order> PastOrder {get; set;}
+      //var datestamp = Date.Now(); id in AModel takes care of this
+      public Users(List<Pizza> pizzas)
+      {
+         CurrentOrders = pizzas;
+      }
+
+      //the Orders List in AUser takes care of this
       public void History()
       {
          //will return a list of previous order totals, and the number of pizzas with them
+         System.Console.WriteLine("Your past orders are: ");
+         System.Console.WriteLine(PastOrder);
+
+      }
+
+      public void Current(){
+         foreach(Pizza item in CurrentOrders)
+         {
+            Console.WriteLine("Pizza size: " + item.size + "\nPizza Price: $" + item.price + "\n");
+         }
       }
 
       public bool HaveOrdered()
@@ -36,6 +62,17 @@ namespace PizzaBox.Domain.Models
       public bool AccExist()
       {
          //checks if the user's account exists
+         System.Console.WriteLine("Enter your username:");
+         string user = System.Console.ReadLine();
+         if(user == UN){
+            SignIn();
+            //return true;
+         }
+         else{
+            System.Console.WriteLine("Wrong username. Try again.");
+            AccExist();
+         }
+
          return true;
       }
 
@@ -61,17 +98,4 @@ namespace PizzaBox.Domain.Models
 
 
    }
-
-   /* this is an abstract
-   public strinf Address {get;set;}
-
-   public List<Order> Orders{get;set;}
-   public AUser()
-   {
-      Orders = new List<Order>();
-   }
-   
-   
-   
-    */
 }

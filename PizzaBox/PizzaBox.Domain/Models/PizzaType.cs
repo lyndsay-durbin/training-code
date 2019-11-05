@@ -1,43 +1,53 @@
-using PizzaBox.Domain.Models;
+using PizzaBox.Domain.Enums;
+using System.Collections.Generic;
+using PizzaBox.Domain.Abstracts;
 
 namespace PizzaBox.Domain.Models
 {
    public class PizzaType
    {
       public int NumToppings { get; set; }
-      
+
+      public List<EToppings> toppingList = new List<EToppings>();
+
       /// <summary>
       /// creates a meat pizza
       /// </summary>
-      public void MeatP()
+      public List<EToppings> MeatP()
       {
-         Pizza p = new Pizza("thick");
-         p.AddTopping("pepperoni");
-         p.AddTopping("sausage");
-         p.AddTopping("bacon");
+         toppingList.Add(EToppings.pepperoni);
+         toppingList.Add(EToppings.sausage);
+         toppingList.Add(EToppings.bacon);
+
          NumToppings =3;
+
+         return toppingList;
       }
 
       /// <summary>
       /// creates a veggie pizza
       /// </summary>
-      public void VeggieP()
+      public List<EToppings> VeggieP()
       {
-         Pizza p = new Pizza("thick");
-         p.AddTopping("pepper");
-         p.AddTopping("onion");
-         p.AddTopping("olives");
+         toppingList.Add(EToppings.pepper);
+         toppingList.Add(EToppings.olives);
+         toppingList.Add(EToppings.onion);
+
          NumToppings =3;
+
+         return toppingList;
       }
 
       /// <summary>
       /// creates a cheese pizza
       /// </summary>
-      public void CheeseP()
+      public List<EToppings> CheeseP()
       {
-         Pizza p = new Pizza("thick");
-         p.AddTopping("extra cheese");
+         toppingList.Add(EToppings.cheese);
+         
          NumToppings =1;
+
+         return toppingList;
       }
    }
 }

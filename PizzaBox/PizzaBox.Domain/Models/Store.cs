@@ -1,38 +1,41 @@
+using PizzaBox.Domain.Enums;
+using PizzaBox.Domain.Models;
+using System.Collections.Generic;
+using System;
+
 namespace PizzaBox.Domain.Models
 {
    public class Store
    {
-      //list of store locations
-      //Dallas, Arlington, Fort Worth
-
-      //should exist at least 1 store
-      //should be able to see order history
       //could see sales (daily/monthly)
       //could see inventory
       //could see users list
-   }
 
 
-   /*
-   public class Store : AModel
-   {
-      public string Address {get;private set;}
-      public List<Order> Orders {get;private set}\
-      public decimal Sales {get{
-         decimal sum =0;
+      //list of store locations in EStores
+      List<EStores> locations = new List<EStores>();
+      public EStores address {get; private set; }
+      //a list of orders in the store
+      public List<Order> Orders { get; private set; }
+      public Order prevOrder = new Order();
 
-         foreach(var item in Orders)
-         {
-            sum += item.Cost;
-         }
-         return sum;
-      }}
-
-      public Store()
+      public Store(string location)
       {
-         Orders = new List<Order>();
+         if(location == "dallas")
+         {
+            address = EStores.dallas;
+         }
+         else if(location == "arlington")
+         {
+            address = EStores.arlington;
+         }
+         else if(location == "fort worth")
+         {
+            address = EStores.fortWorth;
+         }
+
+         Console.WriteLine("Your order has been received by our " + address + " location");
+         
       }
    }
-   
-    */
 }

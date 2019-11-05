@@ -1,94 +1,112 @@
 using System;
 using System.Collections.Generic;
-using PizzaBox.Domain.Models;
+using PizzaBox.Domain.Abstracts;
+using PizzaBox.Domain.Enums;
 
 namespace PizzaBox.Domain.Models
 {
-   public class Pizza
+   public class Pizza : AModel
    {
       //should have a crust
       //should have a size
-      //should compute the cost
       //can have 2 default toppings (crust and chesse)
       //can limit toppings to 5
-      List<string> toppings = new List<string>() 
-      {"sauce", "cheese", "pepperoni", "sausage", 
-      "bacon", "olives", "pepper", "onion", 
-      "extra cheese"};
-      List<string> CurrentToppings = new List<string>();
+      List<EToppings> CurrentToppings;
+      public ECrust crust { get; set; }
+      public ESize size { get; set; }
+      public ECheese cheese { get; set;}
+      public ESauce sauce { get; set; }
+      public decimal price { get; set; }
+      public int PizzaCount { get{
+         return PizzaCount;
+      } set{
+         PizzaCount=0;
+      }}
+      public decimal totprice {get; set;}
 
-      int PizzaCount = 0;
-
-      public Pizza(string crust)
+      public Pizza()
       {
-         Crust(crust);
+         PizzaType p = new PizzaType();
+         CurrentToppings = new List<EToppings>(5);
+
+
+         Console.WriteLine("What kind of pizza would you like? \n" + 
+         "1: Meat Pizza\n2: Veggie Pizza\n3: Cheese Pizza");
+         string response = Console.ReadLine();
+
+         if(response == "1")
+         {
+            CurrentToppings = p.MeatP();
+         }
+         else if(response == "2")
+         {
+            CurrentToppings = p.VeggieP();
+         }
+         else if(response == "3")
+         {
+            CurrentToppings = p.CheeseP();
+         }
+         else {Console.WriteLine("Error: Not a Pizza Option\nGiven Cheese Pizza");
+         CurrentToppings = p.CheeseP();}
+
+         Console.WriteLine("What kind of crust would you like?\nthick, thin, garlic");
+         string resp = Console.ReadLine();
+         if(resp == "thick"){
+            crust = ECrust.thick;
+         }
+         else if(resp == "thin"){
+            crust = ECrust.thin;
+         }
+         else if(resp == "garlic"){
+            crust = ECrust.garlic;
+         }
+         else{Console.WriteLine("Error: Not a Crust Option\nGiven Thick Crust");
+         crust = ECrust.thick;}
+
+         Console.WriteLine("What size would you like your pizza to be?\nSmall (s), Medium (m), Large(l)");
+         string ans = Console.ReadLine();
+         if(ans == "s"){
+            size = ESize.small;
+         }
+         else if(ans == "m")
+         {
+            size = ESize.medium;
+         }
+         else if(ans == "l")
+         {
+            size = ESize.large;
+         }
+         else{Console.WriteLine("Error: Not a Size Option\nGiven Medium Pizza");
+         size = ESize.medium;}
+
+         decimal pizzaPrice = Price();
+         Console.WriteLine("This pizza costs $" + price);
+         //totprice += price;
+         //PizzaCount++;
       }
 
-      /// <summary>
-      /// adds a topping to the pizza's current toppings and prints a list of these
-      /// </summary>
-      /// <param name="topping"></param>
-      public void AddTopping(string topping)
+      private decimal Price()
       {
-         foreach(string item in toppings)
+         if(size == ESize.large)
+            price = 8.99M;
+         if(size == ESize.medium)
+            price = 7.49M;
+         if(size == ESize.small)
+            price = 5.99M;
+         
+         foreach(EToppings item in CurrentToppings)
          {
-            if (string.Equals(item, topping))
-            {
-               CurrentToppings.Add(item);
-            }
+            price += .99M;
          }
 
-         System.Console.WriteLine("This pizza has: ");
-
-         foreach(string item in CurrentToppings)
-         {
-            System.Console.WriteLine(item);
-         }
+         return price;
       }
 
-      public void NumPizzas()
+      //keeps track of the number of pizzas per order
+      public int NumPizzas()
       {
          PizzaCount++;
-         //return PizzaCount;
-      }
-
-   }
-
-
-   /*
-   public Pizza(){
-      Toppings = new List<ETopping>();
-      SetPrice();
-   }
-
-   private void SetPrice(){
-      switch (Size)
-      {
-         case ESize.Large:
-            Price = 12.99M;
-            break;
-         case ESize.Medium:
-            Price = 9.99M;
-            break;
-         case ESize.Small:
-            Price = 6.99M;
-            break;
-         default:
-            Price = 16.99M;
-            break;
+         return PizzaCount;
       }
    }
-
-   public decimal Price{get;set}
-   public ECrust Crust {get;set;}
-   public ESauce Sauce {get;set;}
-   public ESize Size {get;set;}
-   public ECheese Cheese {get;set;}
-   public List<ETopping> Toppings {get;set;}
-
-
-   
-   
-   
-    */
 }
