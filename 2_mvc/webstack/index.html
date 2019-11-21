@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+   <title>PizzaBox</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+   <link rel="stylesheet" href="style.css">
+
+   <!-- would only use this form of style if writing HTML for an email -->
+   <style></style>
+   <!-- can only put scripts in the head or the end, but they normally aren't written in the header;
+      more and more behaviors have been added to pages and if they're placed at the header, then the whole page loads slow-->
+   <script></script>
+</head>
+
+<body class="container">
+   <!-- or these could be more simpley written as "header+main+footer" -->
+   <header class="row">
+      <h1 class="col-md-4">PizzaBox</h1>
+      <nav class="col-md-8">
+         <!-- an anchor tag, would take in a link -->
+         <a href="#">SignUp</a>
+         <a href="#">SignIn</a>
+      </nav>
+   </header>
+
+   <main class="row">
+      <section class="row">
+         <figure>
+            <!-- the alt is supposed to describe the image if unable to view -->
+            <img src="https://www.placecage.com/c/200/300" class="img-fluid" alt="crazy cage">
+            <figcaption>pepperoni</figcaption>
+         </figure>
+         <figure>
+            <img src="https://www.placecage.com/gif/200/300" alt="cage gif">
+            <figcaption>veggie</figcaption>
+         </figure>
+         <figure>
+            <img src="https://baconmockup.com/300/200" alt="corgi">
+            <figcaption>glutenfree</figcaption>
+         </figure>
+         <!--figure>img[src="http://www.placecorgi.com"]+figc-->
+         <figure>
+            <img src="http://www.placecorgi.com/250" alt="puppers">
+            <figcaption>enjoyment</figcaption>
+         </figure>
+      </section>
+      <section></section>
+   </main>
+
+   <footer class="row">
+      <nav>
+         <ul>
+            <li><a href="#">twitter</a></li>
+            <li><a href="#">instagram</a></li>
+            <li><a href="#">facebook</a></li>
+         </ul>
+      </nav>
+      <small>copyright &copy; 2019, lyndsay durbin</small>
+   </footer>
+   <!-- these three are all siblings of each other, they're in the same scope level -->
+</body>
+</html>
