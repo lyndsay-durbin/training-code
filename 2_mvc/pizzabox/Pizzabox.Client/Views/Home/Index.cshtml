@@ -6,3 +6,29 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<!-- html helpers; beginform needs its own scope to run so we encapsulate it all in a using block -->
+@using (@Html.BeginForm("order", "home", null, "post"))
+{
+   @Html.AntiForgeryToken()
+   foreach(var c in Model.Crusts)
+   {
+      @Html.RadioButtonFor(m => m.Crust, @c)
+      @Html.LabelFor(m => m.Crust, @c)
+   }
+   @Html.ValidationMessageFor(m => m.Crust)
+
+<!-- technically don't need the at here because we are alreadyn saying this is C# -->
+   foreach(var s in Model.Sizes)
+   {
+      @Html.RadioButtonFor(m => m.Size, @s)
+      @Html.LabelFor(m => m.Size, @s)
+   }
+   @Html.ValidationMessageFor(m => m.Size)
+   
+   @Html.ValidationMessageFor(m => m.Quantity)
+   @Html.TextBoxFor(m => m.Quantity)
+   @Html.LabelFor(m => m.Quantity)
+
+   <input type="submit" value="order"/>
+}
