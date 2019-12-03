@@ -56,7 +56,7 @@ create table "Order"."OrderPizza" --proxy table for order.order and order.pizza
     OrderPizzaId int not null IDENTITY(1,2)
     ,OrderId int not NULL
     ,PizzaId int not NULL
-)
+);
 
 create table "Order".Pizza
 (
