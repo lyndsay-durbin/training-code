@@ -12,7 +12,3 @@ stages:
            steps:
                - script: |
                  dotnet build 3_devops/Devops.sln
-
-   # - stage: test
-   # - stage: pack
-   # - stage: deploy
