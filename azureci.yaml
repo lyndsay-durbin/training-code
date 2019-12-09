@@ -1,6 +1,6 @@
 name: $(date:yyyymmdd)$(rev:.rr) #20191209.xx
 
-triggers:
+trigger:
    - master
 
 stages:
