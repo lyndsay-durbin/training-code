@@ -17,4 +17,4 @@ stages:
            pool:
                vmImage: ubuntu-18.04
            steps:
-               - script: dotnet test 3_devops/Devops.sln
+               - script: dotnet test 3_devops/Devops.sln --collect:"XPlat Code Coverage"
