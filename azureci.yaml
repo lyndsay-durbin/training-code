@@ -37,10 +37,10 @@ stages:
                 packageType: 'sdk'
                 version: '3.1.100'
             - script: |
-                dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /o:lyndsay-durbin
+                dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /d:sonar.host.url=https://sonarcloud.io /o:lyndsay-durbin
                 dotnet build 3_devops/Devops.sln
                 dotnet test 3_devops/Devops.sln
-                dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN #something wrong
+                dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN 
               env:
                 SONAR_LOGIN: $(SONAR_LOGIN)
   - stage: pack
