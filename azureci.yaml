@@ -37,7 +37,7 @@ stages:
                    dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /o:lyndsay-durbin
                    dotnet build 3_devops/Devops.sln
                    dotnet test 3_devops/Devops.sln
-                   dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN
+                   dotnet sonarscanner end
                  env:
                    SONAR_LOGIN: SONAR_LOGIN
    - stage: pack
