@@ -32,11 +32,11 @@ stages:
            pool:
                vmImage: ubuntu-18.04
            steps:
-               - task: UseDotNet@2
-                   inputs:
-                   packageType: 'sdk'
-                   version: '3.1.100'
-               - script: |
+            - task: UseDotNet@2
+                inputs:
+                packageType: 'sdk'
+                version: '3.1.100'
+            - script: |
                    dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /o:lyndsay-durbin
                    dotnet build 3_devops/Devops.sln
                    dotnet test 3_devops/Devops.sln
