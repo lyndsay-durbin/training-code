@@ -4,19 +4,19 @@ trigger:
    - master
 
 stages:
-   - stage: compile
-     jobs:
-         - job: aspnet_build
-           pool:
-               vmImage: ubuntu-18.04
-           steps:
-               - script: dotnet build 3_devops/Devops.sln
-   - stage: test
-     jobs:
-         - job: aspnet_test
-           pool:
-               vmImage: ubuntu-18.04
-           steps:
+  - stage: compile
+    jobs:
+      - job: aspnet_build
+        pool:
+          vmImage: ubuntu-18.04
+          steps:
+            - script: dotnet build 3_devops/Devops.sln
+  - stage: test
+    jobs:
+      - job: aspnet_test
+        pool:
+          vmImage: ubuntu-18.04
+          steps:
             - task: DotNetCoreCLI@2
               inputs:
                 command: test
@@ -26,36 +26,36 @@ stages:
               inputs:
                 codeCoverageTool: 'cobertura'
                 summaryFileLocation: '**/coverage.cobertura.xml'
-   - stage: analyze
-     jobs:
-         - job:
-           pool:
-               vmImage: ubuntu-18.04
-           steps:
+  - stage: analyze
+    jobs:
+      - job:
+        pool:
+          vmImage: ubuntu-18.04
+          steps:
             - task: UseDotNet@2
-                inputs:
+              inputs:
                 packageType: 'sdk'
                 version: '3.1.100'
             - script: |
-                   dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /o:lyndsay-durbin
-                   dotnet build 3_devops/Devops.sln
-                   dotnet test 3_devops/Devops.sln
-                   dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN #something wrong
-                 env:
-                   SONAR_LOGIN: $(SONAR_LOGIN)
-   - stage: pack
-     jobs:
-         - job:
-           pool:
-               vmImage: ubuntu-18.04
-           steps:
-               - script: docker image build -f 3_devops/dockerfile -t lyndsaydurbin/devops:$BUILD_NAME
-                 env:
-                   BUILD_NAME: $(Build.DefinitionName)
-               - script: docker login --username $DOCKER_USER --password $DOCKER_TOKEN
-                 env:
-                   DOCKER_TOKEN: $(docker.token)
-                   DOCKER_USER: $(docker.user)
-               - script: docker image push lyndsaydurbin/devops:$BUILD_NAME
-                 env:
-                   BUILD_NAME: $(Build.DefinitionName)
+                  dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /o:lyndsay-durbin
+                  dotnet build 3_devops/Devops.sln
+                  dotnet test 3_devops/Devops.sln
+                  dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN #something wrong
+              env:
+                SONAR_LOGIN: $(SONAR_LOGIN)
+  - stage: pack
+    jobs:
+      - job:
+        pool:
+          vmImage: ubuntu-18.04
+          steps:
+            - script: docker image build -f 3_devops/dockerfile -t lyndsaydurbin/devops:$BUILD_NAME
+              env:
+                BUILD_NAME: $(Build.DefinitionName)
+            - script: docker login --username $DOCKER_USER --password $DOCKER_TOKEN
+              env:
+                DOCKER_TOKEN: $(docker.token)
+                DOCKER_USER: $(docker.user)
+            - script: docker image push lyndsaydurbin/devops:$BUILD_NAME
+              env:
+                BUILD_NAME: $(Build.DefinitionName)
