@@ -32,14 +32,16 @@ stages:
            pool:
                vmImage: ubuntu-18.04
            steps:
-               - script: dotnet tool install --global dotnet-sonarscanner
+               - task: DotnetGlobalToolInstaller@0
+                 inputs:
+                   name: 'dotnet-sonarscanner'
                - script: |
                    dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$SONAR_LOGIN /o:lyndsay-durbin
                    dotnet build 3_devops/Devops.sln
                    dotnet test 3_devops/Devops.sln
                    dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN #something wrong
                  env:
-                   SONAR_LOGIN: SONAR_LOGIN
+                   SONAR_LOGIN: $(SONAR_LOGIN)
    - stage: pack
      jobs:
          - job:
