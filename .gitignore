@@ -2,6 +2,11 @@
 **/bin/
 **/obj/
 
+# coverlet
+TestResults/
+
+# nodejs
+node_modules/
 
 # vagrant
 **/.vagrant/
