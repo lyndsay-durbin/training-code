@@ -20,9 +20,9 @@ stages:
             - task: DotNetCoreCLI@2
               inputs:
                 command: test
-                projects: '3_devops/Devops.Test.csproj'
+                projects: 3_devops/Devops.Test.csproj
                 arguments: '--collect:"XPlat Code Coverage"'
-            - task: 'PublishCodeCoverageResults@1'
+            - task: PublishCodeCoverageResults@1
               inputs:
                 codeCoverageTool: 'cobertura'
                 summaryFileLocation: '**/coverage.cobertura.xml'
@@ -32,12 +32,14 @@ stages:
    #         pool:
    #             vmImage: ubuntu-18.04
    #         steps:
-   #             - script: dotnet install --global dotnet-sonarscanner
+   #             - script: dotnet tool install --global dotnet-sonarscanner
    #             - script: |
-   #                 sonarscanner begin /k:devops-lyndsay /d:sonar-login=$(SONAR_LOGIN)
+   #                 dotnet sonarscanner begin /k:devops-lyndsay /d:sonar-login=$(SONAR_LOGIN) /o:lyndsay-durbin
    #                 dotnet build
    #                 dotnet test
-   #                 sonarscanner end /d:sonar-login=$(SONAR_LOGIN)
+   #                 dotnet sonarscanner end /d:sonar-login=$(SONAR_LOGIN)
+   #               env:
+   #                 SONAR_LOGIN: SONAR_LOGIN
    # - stage: pack
    #   jobs:
    #       - job:
