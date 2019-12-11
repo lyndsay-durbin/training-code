@@ -9,56 +9,56 @@ stages:
       - job: aspnet_build
         pool:
           vmImage: ubuntu-18.04
-          steps:
-            - script: dotnet build 3_devops/Devops.sln
+        steps:
+          - script: dotnet build 3_devops/Devops.sln
   - stage: test
     jobs:
       - job: aspnet_test
         pool:
           vmImage: ubuntu-18.04
-          steps:
-            - script: dotnet test 3_devops/Devops.sln --logger trx --collect:"XPlat Code Coverage"
-            - task: PublishCodeCoverageResults@1
-              inputs:
-                codeCoverageTool: 'cobertura'
-                summaryFileLocation: '**/coverage.cobertura.xml'
+        steps:
+          - script: dotnet test 3_devops/Devops.sln --logger trx --collect:"XPlat Code Coverage"
+          - task: PublishCodeCoverageResults@1
+            inputs:
+              codeCoverageTool: 'cobertura'
+              summaryFileLocation: '**/coverage.cobertura.xml'
   - stage: analyze
     jobs:
       - job:
         pool:
           vmImage: ubuntu-18.04
-          steps:
-            - task: UseDotNet@2
-              inputs:
-                packageType: 'sdk'
-                version: '3.1.100'
-            - script: dotnet tool install --global dotnet-sonarscanner
-            - script: |
-                dotnet sonarscanner begin \
-                /d:sonar-login=$SONAR_LOGIN \
-                /d:sonar.host.url=https://sonarcloud.io \
-                /d:sonar.cs.opencover.reportsPaths=**/TestResults/*/coverage.opencoverage.xml \
-                /d:sonar.cs.vstest.reportsPaths=**/*.trx \
-                /k:devops-lyndsay \
-                /o:lyndsay-durbin
-                dotnet build 3_devops/Devops.sln
-                dotnet test 3_devops/Devops.sln --logger trx
-                dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN 
-              env:
-                SONAR_LOGIN: $(SONAR_LOGIN)
+        steps:
+          - task: UseDotNet@2
+            inputs:
+              packageType: 'sdk'
+              version: '3.1.100'
+          - script: dotnet tool install --global dotnet-sonarscanner
+          - script: |
+              dotnet sonarscanner begin \
+              /d:sonar-login=$SONAR_LOGIN \
+              /d:sonar.host.url=https://sonarcloud.io \
+              /d:sonar.cs.opencover.reportsPaths=**/TestResults/*/coverage.opencoverage.xml \
+              /d:sonar.cs.vstest.reportsPaths=**/*.trx \
+              /k:devops-lyndsay \
+              /o:lyndsay-durbin
+              dotnet build 3_devops/Devops.sln
+              dotnet test 3_devops/Devops.sln --logger trx
+              dotnet sonarscanner end /d:sonar-login=$SONAR_LOGIN 
+            env:
+              SONAR_LOGIN: $(SONAR_LOGIN)
   - stage: pack
     jobs:
       - job:
         pool:
           vmImage: ubuntu-18.04
-          steps:
-            - script: docker image build -f 3_devops/dockerfile -t lyndsaydurbin/devops:$BUILD_NAME
-              env:
-                BUILD_NAME: $(Build.DefinitionName)
-            - script: docker login --username $DOCKER_USER --password $DOCKER_TOKEN
-              env:
-                DOCKER_TOKEN: $(docker.token)
-                DOCKER_USER: $(docker.user)
-            - script: docker image push lyndsaydurbin/devops:$BUILD_NAME
-              env:
-                BUILD_NAME: $(Build.DefinitionName)
+        steps:
+          - script: docker image build -f 3_devops/dockerfile -t lyndsaydurbin/devops:$BUILD_NAME ./3_devops
+            env:
+              BUILD_NAME: $(Build.DefinitionName)
+          - script: docker login --username $DOCKER_USER --password $DOCKER_TOKEN
+            env:
+              DOCKER_TOKEN: $(docker.token)
+              DOCKER_USER: $(docker.user)
+          - script: docker image push lyndsaydurbin/devops:$BUILD_NAME
+            env:
+              BUILD_NAME: $(Build.DefinitionName)
