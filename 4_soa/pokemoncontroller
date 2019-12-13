@@ -1,0 +1,79 @@
+
+[HttpPost]
+public async Task<IActionResult> Post(Pokemon poke)
+{
+  if (ModelState.IsValid)
+  {
+    _db.Pokemon.Add(poke);
+    _db.SaveChanges();
+    
+    return await Task.FromResult(Ok(poke));
+  }
+
+  return await Task.FromResult(NotFound(poke));
+}
+
+
+swagger is similar to middleware so it goes in the startup: we need to add a service
+public void ConfigureServices(IServiceCollection ) 
+{
+  services.AddControllers();
+  services.AddSwaggerGen(o => o.SwaggerDoc("v0", new OpenApiInfo(){ Title = "Pokemon API", Version = "v0"}));
+}
+now that we registered the middleware, we use it
+
+in th eConfigure method:
+app.UseSwagger()
+app.UseSwaggerUI(o => o.SwaggerEndpoint("/swagger/v0/swagger.json", "PokeDex"));
+
+update the swagger info to 5.0.0
+
+now postman and ui together forms this swagger documentation where you can now send this link to anyone and they can see 
+  what your service can do and even try it out
+
+rather than writing the resource in the code, the resource will be provided to the code in the Configure
+  this is the D in SOLID; dependency inversion and is implemented by dependeny injection
+  I want to be able to use a different database rather than creating a whole new project everytime you have a new database
+
+  right now the controller contains the dependency (db context) but we want to inject the db context into the controller
+  we will be doing constructor dependency but there is also a property(?) dependency
+
+in startup; in configure services:
+
+services.AddDbContext<PokemonDbContext>();
+
+scoped: dependency injection works for the lifetime of the session; which means that as a client of this service, when i make a request, 
+  i will be given a scope. the pokemone db context will be a singleton for the session, each user on the service will have their own 
+  pokemon db context on the service. 
+singleton: only one fred, for all of us; have to answer joshua before fred answers ben; singleton is one for th eentire service
+transient: each request gets a new instance of pokemon db context; each request gets its own db context; 
+
+now in th ePokemone controller, create a constructor:
+
+private readonly PokemonDbContext _db;
+
+public PokemonController(PokemonDbContext dbContext)
+{
+  _db = dbContext;
+}
+
+(marker interface)
+
+EntityFrameworkCore.InMemory package: allows us to test against some database
+
+dotnet add RestApi.Testing/RestApi.Testing.csproj package EntityFrameworkCore.InMemory
+dotnet add RestApi.Data/RestApi.Data.csproj package EntityFrameworkCore.InMemory
+
+creating a new :
+touch RestApi.Data/PokemoneTestDbContext.cs
+
+this is the dbContext that you will use for testing; basically the same thing as the 
+  real one with some slight changes since it doesn't need to communicate with everything
+
+In the testing, we need to add MVC
+dotnet add RestApi.Testing/RestApi.Testing.csproj package microsoft.aspnetcore.MVC
+
+we can test using serialization OR we can use an httpclient to make a request to our service
+  right now we're using postman, the browser, and swagger to access our service, they all have
+  one thing in common, the httprequest; so if i can send an httprequest, then i can test it as well;
+  can also do it casting (fancy), but how? this is the challenge for monday!
